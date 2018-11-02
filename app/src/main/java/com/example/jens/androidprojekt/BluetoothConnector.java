@@ -6,12 +6,16 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.UUID;
 
 public class BluetoothConnector {
     // Variabelen zum Conect
     public BluetoothAdapter bluetoothAdapter;
     public BluetoothSocket bluetoothSocket;
+    public OutputStream bluetoothOutStream;
+    public InputStream bluetoothInStream;
     public String address;
 
     //Constructor mit Adress uebergabe
@@ -42,7 +46,17 @@ public class BluetoothConnector {
         return connected;
     }
 
+    public void sendbyte(byte[] message) {
 
+        try {
+            bluetoothOutStream.write(message);
+        } catch (IOException e) {
+
+
+        }
+
+
+    }
 
 
 }

@@ -8,13 +8,14 @@ import android.widget.TextView;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-
+import java.io.IOException;
 
 
 public class MainActivity extends AppCompatActivity {
 
     public BluetoothConnector connector;
     public TextView textView;
+    public MotorControl control;
 
 
 
@@ -34,16 +35,37 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void testOnClick(View v){
-        boolean test;
-        test = connector.connect();
+    public void connectOnClick(View v){
 
 
-        if(test) {
+
+
+        boolean connectiontest;
+        connectiontest = connector.connect();
+
+
+        if(connectiontest) {
+
+
             textView.setText("funktioniert");
+
+
+            try {
+                control = new MotorControl(connector);
+                connector.bluetoothInStream = connector.bluetoothSocket.getInputStream();
+                connector.bluetoothOutStream = connector.bluetoothSocket.getOutputStream();
+                textView.setText("Verbunden mit: "+connector.address);
+           }
+            catch(IOException e)
+            {
+
+
+            }
+
+
         }else{
 
-            textView.setText("funktioniert nicht");
+            textView.setText("Verbindung fehlgeschlagen");
         }
 
 
