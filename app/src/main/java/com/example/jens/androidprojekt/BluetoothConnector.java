@@ -46,6 +46,7 @@ public class BluetoothConnector {
         return connected;
     }
 
+    //Daten in form von Byte array an den NXT Senden
     public void sendbyte(byte[] message) {
 
         try {

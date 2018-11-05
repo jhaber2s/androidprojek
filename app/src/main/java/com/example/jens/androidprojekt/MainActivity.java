@@ -18,33 +18,26 @@ public class MainActivity extends AppCompatActivity {
     public MotorControl control;
 
 
-
-
-
-
-    @Override
+    //Ausfuerung bei start der app
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         connector = new BluetoothConnector("00:16:53:07:1D:00");
-        textView = (TextView)findViewById(R.id.textView5);
-
-
-
-
+        textView = (TextView) findViewById(R.id.textView5);
 
 
     }
-    public void connectOnClick(View v){
 
-
+    //onclickfunktion zum verbinden
+    public void connectOnClick(View v) {
 
 
         boolean connectiontest;
         connectiontest = connector.connect();
 
 
-        if(connectiontest) {
+        if (connectiontest) {
 
 
             textView.setText("funktioniert");
@@ -54,34 +47,34 @@ public class MainActivity extends AppCompatActivity {
                 control = new MotorControl(connector);
                 connector.bluetoothInStream = connector.bluetoothSocket.getInputStream();
                 connector.bluetoothOutStream = connector.bluetoothSocket.getOutputStream();
-                textView.setText("Verbunden mit: "+connector.address);
-           }
-            catch(IOException e)
-            {
+                textView.setText("Verbunden mit: " + connector.address);
+            } catch (IOException e) {
 
 
             }
 
 
-        }else{
+        } else {
 
             textView.setText("Verbindung fehlgeschlagen");
         }
 
 
+    }
+
+
+    //onclick zum senden einer nachricht welche einen ton erzeugt
+    public void soundonclick(View v) {
+        byte[] test = new byte[]{0x06, 0x00, 0x00, 0x03, 0x0B, 0x02, (byte) 0xF4, 0x01};
+        connector.sendbyte(test);
 
     }
 
 
-
-    public static void main(String [] args)
-    {
+    public static void main(String[] args) {
 
 
     }
-
-
-
 
 
 }
