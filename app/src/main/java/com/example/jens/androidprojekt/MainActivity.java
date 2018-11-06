@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public BluetoothConnector connector;
     public TextView textView;
     public MotorControl control;
+    public TextView testtext;
 
 
     //Ausfuerung bei start der app
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         connector = new BluetoothConnector("00:16:53:07:1D:00");
         textView = (TextView) findViewById(R.id.textView5);
+        testtext = (TextView) findViewById(R.id.SensorTextView);
 
 
     }
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         boolean connectiontest;
+
+        //Verbinden
         connectiontest = connector.connect();
 
 
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 control = new MotorControl(connector);
+                //In/Out putstream festlegen
                 connector.bluetoothInStream = connector.bluetoothSocket.getInputStream();
                 connector.bluetoothOutStream = connector.bluetoothSocket.getOutputStream();
                 textView.setText("Verbunden mit: " + connector.address);
@@ -65,8 +70,19 @@ public class MainActivity extends AppCompatActivity {
 
     //onclick zum senden einer nachricht welche einen ton erzeugt
     public void soundonclick(View v) {
+        //byte fuer ton
         byte[] test = new byte[]{0x06, 0x00, 0x00, 0x03, 0x0B, 0x02, (byte) 0xF4, 0x01};
+
+        //byte fuer testfahren
+        byte[] testfahren = new byte[]{0x0C, 0x00, 0x00, 0x04, 0x02, 0x32, 0x05, 0x01, 0x32, 0x20, 0x00, 0x00, 0x00, 0x00};
+
+        // connector.sendbyte(test);
         connector.sendbyte(test);
+
+    }
+// onclick fuer Sensor Daten
+    public void Sensoronclick(View v) {
+
 
     }
 

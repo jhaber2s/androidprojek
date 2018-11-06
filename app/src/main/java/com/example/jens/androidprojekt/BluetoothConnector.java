@@ -58,6 +58,12 @@ public class BluetoothConnector {
 
 
     }
+// Datten fom NXT lesen
+    // TODO: 06.11.2018  
+    public byte[] readbyte() {
+
+        return null;
+    }
 
 
 }

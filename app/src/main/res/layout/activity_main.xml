@@ -14,7 +14,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="83dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="60dp"
         android:onClick="soundonclick"
         android:text="Das ist ein Test"
         app:layout_constraintBottom_toTopOf="@+id/connect"
@@ -30,15 +30,44 @@
         android:layout_marginStart="147dp"
         android:layout_marginTop="47dp"
         android:layout_marginEnd="150dp"
-        android:layout_marginBottom="233dp"
+        android:layout_marginBottom="400dp"
         android:onClick="connectOnClick"
         android:text="Connect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/SensorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="48dp"
+        android:text="Sensor test"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connect" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="196dp"
+        android:onClick="Sensoronclick"
+        android:text="Sensortest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SensorTextView" />
 
 
 </android.support.constraint.ConstraintLayout>
