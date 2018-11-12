@@ -2,6 +2,7 @@ package com.example.jens.androidprojekt;
 
 public class MotorControl {
     private BluetoothConnector connector;
+    private CompasSensorControl compas;
 
 
     byte motor = 0x00;
@@ -12,17 +13,31 @@ public class MotorControl {
     byte[] command;
 
 
-    public MotorControl(BluetoothConnector connector) {
+    public MotorControl(BluetoothConnector connector, CompasSensorControl compas) {
         this.connector = connector;
+        this.compas = compas;
 
     }
 
     public void turn90DegreeRight() {
+        int degree = compas.getSensorData();
+        // TODO: 09.11.2018 while schleife anpassen je nach dem welche werte der kompass zurueck gibt
+        while (degree + 90 >= compas.getSensorData()) {
+            turnRight();
+        }
+        stop();
 
 
-    } 
+    }
 
     public void turn90DegreeLeft() {
+
+        int degree = compas.getSensorData();
+        // TODO: 09.11.2018 while schleife anpassen je nach dem welche werte der kompass zurueck gibt
+        while (degree - 90 <= compas.getSensorData()) {
+            turnLeft();
+        }
+        stop();
 
 
     }
@@ -54,22 +69,21 @@ public class MotorControl {
     }
 
 
-    // TODO: 06.11.2018  kontrolieren welcher motor 1 und welcher 2 ist um die dreh richtung zu bestimmen
+
     public void turnLeft() {
         motorRegulationMode = 0x01;
         motorRunState = 0x20;
-        motor = 0x02;
+        motor = 0x01;
         motorSpeed = 0x20;
         sendByte();
-        motor = 0x01;
-        motorSpeed = -0x02;
+        motor = 0x02;
+        motorSpeed = -0x20;
         sendByte();
-
 
 
     }
 
-    // TODO: 06.11.2018  kontrolieren welcher motor 1 und welcher 2 ist um die dreh richtung zu bestimmen
+   
     public void turnRight() {
         motorRegulationMode = 0x01;
         motorRunState = 0x20;
@@ -77,7 +91,7 @@ public class MotorControl {
         motorSpeed = 0x20;
         sendByte();
         motor = 0x01;
-        motorSpeed = -0x02;
+        motorSpeed = -0x20;
         sendByte();
 
 

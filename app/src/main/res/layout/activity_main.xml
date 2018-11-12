@@ -11,13 +11,11 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="83dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="144dp"
         android:onClick="soundonclick"
         android:text="Das ist ein Test"
-        app:layout_constraintBottom_toTopOf="@+id/connect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,32 +23,27 @@
 
     <Button
         android:id="@+id/connect"
-        android:layout_width="wrap_content"
+        android:layout_width="98dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="147dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="400dp"
+        android:layout_marginStart="143dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="143dp"
         android:onClick="connectOnClick"
         android:text="Connect"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/SensorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="156dp"
         android:text="Sensor test"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/connect" />
 
@@ -58,16 +51,80 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="126dp"
-        android:layout_marginBottom="196dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="135dp"
         android:onClick="Sensoronclick"
         android:text="Sensortest"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.992"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SensorTextView" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="163dp"
+        android:text="Motor Test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <Button
+        android:id="@+id/buttonVorwaerts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="148dp"
+        android:onClick="VorwaertsOnClick"
+        android:text="Vorwaerts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <Button
+        android:id="@+id/buttonStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="151dp"
+        android:onClick="StopOnClick"
+        android:text="Stop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonVorwaerts" />
+
+    <Button
+        android:id="@+id/buttonLinks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="364dp"
+        android:layout_marginEnd="103dp"
+        android:onClick="LeftOnClick"
+        android:text="Links"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRechts"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonRechts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="56dp"
+        android:onClick="RightOnClick"
+        android:text="Rechts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonLinks"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 
 </android.support.constraint.ConstraintLayout>

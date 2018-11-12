@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView textView;
     public MotorControl control;
     public TextView testtext;
+    public CompasSensorControl compass;
 
 
     //Ausfuerung bei start der app
@@ -48,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
 
             try {
-                control = new MotorControl(connector);
+
                 //In/Out putstream festlegen
+                control = new MotorControl(connector,compass);
                 connector.bluetoothInStream = connector.bluetoothSocket.getInputStream();
                 connector.bluetoothOutStream = connector.bluetoothSocket.getOutputStream();
                 textView.setText("Verbunden mit: " + connector.address);
@@ -73,16 +75,40 @@ public class MainActivity extends AppCompatActivity {
         //byte fuer ton
         byte[] test = new byte[]{0x06, 0x00, 0x00, 0x03, 0x0B, 0x02, (byte) 0xF4, 0x01};
 
-        //byte fuer testfahren
-        byte[] testfahren = new byte[]{0x0C, 0x00, 0x00, 0x04, 0x02, 0x32, 0x05, 0x01, 0x32, 0x20, 0x00, 0x00, 0x00, 0x00};
 
         // connector.sendbyte(test);
         connector.sendbyte(test);
 
     }
-// onclick fuer Sensor Daten
+
+    // onclick fuer Sensor Daten
     public void Sensoronclick(View v) {
 
+
+    }
+
+    public void VorwaertsOnClick(View v){
+
+        control.driveForward();
+
+
+    }
+
+    public void StopOnClick(View v){
+
+        control.stop();
+
+    }
+
+    public void LeftOnClick(View v){
+
+        control.turnLeft();
+
+    }
+
+    public void RightOnClick(View v){
+
+        control.turnRight();
 
     }
 
