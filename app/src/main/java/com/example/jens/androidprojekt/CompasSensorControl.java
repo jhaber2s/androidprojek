@@ -2,48 +2,36 @@ package com.example.jens.androidprojekt;
 
 import javax.microedition.sensor.NXTADSensorInfo;
 
+import lejos.nxt.I2CPort;
+import lejos.nxt.SensorPort;
 import lejos.nxt.addon.CompassHTSensor;
 
 public class CompasSensorControl {
     private BluetoothConnector connector;
 
-    private byte responserequested = 0x00;
-    private byte commandid = 0x05;
-    private byte port = 0x00;
-    private byte sensortype = 0x0A; // Low speed sensor
-    private byte sensormode = 0x00; // raw
-
     public CompasSensorControl(BluetoothConnector connector) {
         this.connector = connector;
     }
+    private CompassHTSensor compass = new CompassHTSensor(SensorPort.S1); // Port S1 - S4, noch definieren?
 
-    public void initPort(){
-        connector.sendbyte(new byte[]{responserequested,commandid,port,sensortype,sensormode});
+    /*
+        Davor mit einem calibrateDegree Nullen!
+     */
+    public float getDegrees(){ //Cartesian
+        return compass.getDegreesCartesian();
     }
 
-    public void initSensor(){
-        connector.sendbyte(new byte[]{responserequested,0x0F,port,0x03,0x0,0x02,0x41,sensormode}); //'Die 0x41 wird falsch sein, probieren? Vielleicht findet wer was?
+    public float getDegrees2(){ //orientiert sich an Norden, zum benutzen umständlicher
+        return compass.getDegrees();
     }
 
-    public void lswrite(){
-        connector.sendbyte(new byte[]{responserequested,commandid,port,0x02,0x06,0x02,0x46}); //0x02 und 0x46 am Ende für den ColorSensor, richtige Adresse herausfinden!
+    public void calibrateDegree(){
+        compass.resetCartesianZero();
     }
 
-    private byte[] lsread(){
-        connector.sendbyte(new byte[]{responserequested,commandid,port});
-        return new byte[]{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // rückgabe für Sendbyte muss noch geschrieben werden. Methode im BT Connector?
+    public void calibrate(){
+        compass.startCalibration();
+        // TODO: Der NXT muss sich langsam drehen, vorgeschlagen sind 1-1,5 Umdrehungen in mind. 20 Sekunden
+        compass.stopCalibration();
     }
-
-    // TODO: 06.11.2018
-    public int getSensorData() {
-        byte[] ret = lsread();
-        if(ret[2] == 0x20) // Fehler, wiederhole Anfrage
-            return -1;
-        /*
-        Hier Berechnung aus den Bytes in Int.
-         */
-        return 0;
-    }
-
-
 }
